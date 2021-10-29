@@ -1,0 +1,25 @@
+version: '3'
+services:
+  express:
+    build: ./backend
+    image: express_server
+    container_name: express
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    ports:
+      - 5000:5000
+      - 35729:35729
+    environment:
+      NODE_ENV: development
+  react:
+    build: ./frontend
+    image: react
+    container_name: react
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - 10001:3000
+    environment:
+      NODE_ENV: development
